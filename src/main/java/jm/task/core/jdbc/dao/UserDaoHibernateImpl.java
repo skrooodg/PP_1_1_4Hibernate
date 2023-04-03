@@ -9,9 +9,8 @@ import org.hibernate.*;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    private SessionFactory sessionFactory = Util.getConnection();
+    private SessionFactory sessionFactory = Util.getSessionFactory();
     public UserDaoHibernateImpl() {
-
     }
     @Override
     public void createUsersTable() {

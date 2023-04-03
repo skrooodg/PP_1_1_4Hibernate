@@ -21,7 +21,24 @@ public class Util {
     private static final String DB_Username = "root";
     private static final String DB_Password = "root";
     private static SessionFactory sessionFactory = null;
-    public static SessionFactory getConnection() {
+
+
+    public static Connection getConnection() {
+        Connection connection = null;
+        try {
+            Class.forName(DB_Driver);
+            connection = DriverManager.getConnection(DB_URL, DB_Username, DB_Password);
+            System.out.println("Connection OK");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.out.println("Connection ERROR");
+
+        }
+        return  connection;
+
+    }
+
+    public static SessionFactory getSessionFactory() {
         try {
             Configuration configuration = new Configuration()
                     .setProperty("hibernate.connection.driver_class", DB_Driver)
